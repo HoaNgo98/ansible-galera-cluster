@@ -12,17 +12,18 @@ wsrep_node_address={{ lookup('vars', galera_cluster_interface_fact_var).ipv4.add
 binlog_format=ROW
 innodb_autoinc_lock_mode=2
 default_storage_engine=InnoDB
-innodb_doublewrite=1
-query_cache_size=0
+#innodb_doublewrite=1
+#query_cache_size=0
 wsrep_on=ON
+log-error = /var/log/mysql/mariadb.log
 
 # SST settings
-wsrep_sst_method=rsync
-#wsrep_sst_receive_address={{ lookup('vars', galera_cluster_interface_fact_var).ipv4.address }}
-#wsrep_sst_auth={{ galera_sst_user }}:{{ galera_sst_pass }}
+wsrep_sst_method=mariabackup
+wsrep_sst_receive_address={{ lookup('vars', galera_cluster_interface_fact_var).ipv4.address }}
+wsrep_sst_auth={{ galera_sst_user }}:{{ galera_sst_pass }}
 # required since 10.1
-wait_timeout = 50
-interactove_timeout = 50
+#wait_timeout = 50
+#interactove_timeout = 50
 
 # Optional setting
 innodb_buffer_pool_size=200M
