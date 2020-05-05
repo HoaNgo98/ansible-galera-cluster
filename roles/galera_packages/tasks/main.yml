@@ -17,7 +17,7 @@
   loop:
     - mariadb-backup-{{ mariadb_release }}
     - socat
-  when: ansible_facts['mariadb_release'] == "10.2"
+  #when: ansible_facts['mariadb_release'] == "10.2"
 
 - name: Install MySQL-python
   become: yes
