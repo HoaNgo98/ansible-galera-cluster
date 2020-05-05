@@ -1,0 +1,39 @@
+---
+- name: Add mysql configuration to my.cnf
+  become: yes
+  become_user: root
+  template: src=server.cnf.j2 dest=/etc/my.cnf
+    owner=mysql group=mysql mode=0644
+
+- name: Add galera configuration to galera.cnf
+  become: yes
+  become_user: root
+  template: src=galera.cnf.j2 dest=/etc/mysql/mariadb.conf.d/galera.cnf
+    owner=mysql group=mysql mode=0644
+
+- name: Remove others mysql_conf
+  file:
+    path: {{ item }}
+    state: absent
+  loop: 
+    - /etc/mysql/my.cnf.fallback
+    - /etc/mysql/my.cnf
+    - /etc/mysql/conf.d/
+
+
+- name: Recursively change ownership mysql_dirs to mysql user.
+  become: yes
+  become_user: root
+  file:
+    path: {{ item }}
+    state: directory
+    recurse: yes
+    owner: mysql
+    group: mysql
+  loop: 
+    - /etc/mysql
+    - /var/lib/mysql
+    - /usr/lib/galera
+    - /var/log/mysql
+
+

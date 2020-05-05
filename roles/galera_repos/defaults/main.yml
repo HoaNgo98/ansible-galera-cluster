@@ -1,0 +1,4 @@
+---
+# Mariadb <=10.2 supports InnodDB
+# Mariadb >10.3.22 drops InnoDB support.
+mariadb_release: 10.2

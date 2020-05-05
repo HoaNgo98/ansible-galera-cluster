@@ -1,0 +1,12 @@
+---
+- hosts: galera_cluster
+  roles:
+    - { role: security, tags: [ 'setup' ] }
+    - { role: galera_repos, tags: [ 'setup', 'packages' ] }
+    - { role: galera_packages, tags: [ 'setup', 'packages' ] }
+    - { role: galera_privs, tags: [ 'auth' ] }
+    - { role: galera_conf, tags: [ 'config' ] }
+    - { role: galera_healthcheck, tags: [ 'healthcheck' ] }
+  environment:
+    http_proxy: http://10.0.191.5:3129
+    https_proxy: http://10.0.191.5:3129

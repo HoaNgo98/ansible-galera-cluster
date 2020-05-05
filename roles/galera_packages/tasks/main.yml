@@ -1,0 +1,29 @@
+---
+- name: Install MariaDB server packages
+  become: yes
+  become_user: root
+  apt: name={{ item }} state=present update_cache=yes
+  loop:
+    - mariadb-client-{{ mariadb_release }}
+    - mariadb-server-{{ mariadb_release }}
+    - mariadb-client-core-{{ mariadb_release }}
+    - galera-3
+    - rsync
+
+- name: Install mariadb-backup packages
+  become: yes
+  become_user: root
+  apt: name={{ item }} state=present
+  loop:
+    - mariadb-backup-{{ mariadb_release }}
+    - socat
+  when: ansible_facts['mariadb_release'] == "10.2"
+
+- name: Install MySQL-python
+  become: yes
+  become_user: root
+  apt: name={{ item }} state=present
+  loop:
+    - python-mysqldb
+    - python-pymysql
+
