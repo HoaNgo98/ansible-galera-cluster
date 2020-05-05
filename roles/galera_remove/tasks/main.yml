@@ -11,7 +11,7 @@
   loop:
     - mariadb-client
     - mariadb-server
-    - mariadb-client-core-{{ mariadb_release }}
+    - mariadb-client-core
     - galera-3
     - rsync
 
