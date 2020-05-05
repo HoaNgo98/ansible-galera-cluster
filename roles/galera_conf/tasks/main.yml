@@ -25,7 +25,7 @@
   become: yes
   become_user: root
   file:
-    path: {{ item }}
+    path: "{{ item }}"
     state: directory
     recurse: yes
     owner: mysql
