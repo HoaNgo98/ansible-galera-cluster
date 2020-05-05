@@ -13,7 +13,7 @@
 
 - name: Remove others mysql_conf
   file:
-    path: {{ item }}
+    path: "{{ item }}"
     state: absent
   loop: 
     - /etc/mysql/my.cnf.fallback
