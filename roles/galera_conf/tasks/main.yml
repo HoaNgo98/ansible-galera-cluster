@@ -1,9 +1,9 @@
 ---
-#- name: Add mysql configuration to my.cnf
-#  become: yes
-#  become_user: root
-#  template: src=server.cnf.j2 dest=/etc/my.cnf
-#    owner=mysql group=mysql mode=0644
+- name: Add mysql configuration to my.cnf
+  become: yes
+  become_user: root
+  template: src=server.cnf.j2 dest=/etc/my.cnf
+    owner=mysql group=mysql mode=0644
 
 - name: Add galera configuration to galera.cnf
   become: yes
