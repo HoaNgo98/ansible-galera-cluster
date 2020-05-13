@@ -11,13 +11,13 @@
   template: src=galera.cnf.j2 dest=/etc/mysql/conf.d/galera.cnf
     owner=mysql group=mysql mode=0644
 
-#- name: Remove others mysql_conf
-#  file:
-#    path: "{{ item }}"
-#    state: absent
-#  loop: 
-#    - /etc/mysql/my.cnf.fallback
-#    - /etc/mysql/my.cnf
+- name: Remove others mysql_conf
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop: 
+    - /etc/mysql/my.cnf.fallback
+    - /etc/mysql/my.cnf
 #    - /etc/mysql/conf.d/
 
 
